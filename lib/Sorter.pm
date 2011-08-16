@@ -1,6 +1,3 @@
-#! /usr/bin/perl
-# -*- coding:vim -*-
-
 package Sorter;
 use strict;
 use warnings;
@@ -29,34 +26,8 @@ sub get_values {
     return @{ $self->{values} };
 }	
 
-sub _quick_sort {
-    my (@values) = @_;
-	
-    return @values  if ($#values < 1);
-
-    # pivotとして先頭の値を選択する
-    my $pivot = shift @values;
-	
-    my @left = ();
-    my @right = ();
-    foreach my $value (@values) {
-	if ($value <= $pivot) {	
-	    push @left, $value;
-	} else {
-	    push @right, $value;
-	}
-    }
-    @left = &_quick_sort(@left);
-    @right = &_quick_sort(@right);
-
-    return (@left, $pivot, @right);
-}
-
-sub sort {
-    my ($self) = @_;
-
-    $self->{values} = [&_quick_sort(@{ $self->{values} })];
-}
+# Overriddeen by sub class 
+sub sort { }
 
 1;
 
